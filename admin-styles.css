@@ -1,0 +1,275 @@
+.admin-container {
+    padding: 2rem;
+    margin-top: 6rem;
+}
+
+/* Tab Navigation */
+.admin-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--main-bg);
+    color: #666;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 10px var(--shadow-dark),
+                -4px -4px 10px var(--shadow-light);
+}
+
+.tab-btn.active {
+    background-color: var(--green-color);
+    color: white;
+}
+
+.tab-btn:hover:not(.active) {
+    color: var(--green-color);
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.admin-sections {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.admin-section {
+    background-color: var(--main-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px var(--shadow-dark),
+                -4px -4px 10px var(--shadow-light);
+}
+
+.admin-section.full-width {
+    grid-column: 1 / -1;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.search-box input,
+.filters input,
+.filters select {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--main-bg);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.admin-card {
+    background-color: var(--main-bg);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+}
+
+.admin-card h3 {
+    color: var(--green-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.data-display {
+    font-size: 2rem;
+    color: #666;
+    font-weight: bold;
+}
+
+.admin-table {
+    overflow-x: auto;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 0.6rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.85rem;
+}
+
+th {
+    background-color: var(--green-color);
+    color: white;
+    position: sticky;
+    top: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.pagination button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--green-color);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: var(--main-bg);
+    color: var(--green-color);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+}
+
+.settings-form {
+    margin-top: 1rem;
+}
+
+.settings-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.settings-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.settings-form input {
+    width: 100%;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--main-bg);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+}
+
+.admin-btn {
+    background-color: var(--green-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.admin-btn:hover {
+    background-color: var(--main-bg);
+    color: var(--green-color);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+}
+
+.admin-btn.danger {
+    background-color: #dc3545;
+}
+
+.admin-btn.danger:hover {
+    background-color: var(--main-bg);
+    color: #dc3545;
+}
+
+.db-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.admin-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#adminName {
+    color: var(--green-color);
+    font-weight: bold;
+}
+
+/* Status badges */
+.status-badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.status-active {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-inactive {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Action buttons in tables */
+.action-btn {
+    padding: 0.2rem 0.6rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    margin: 0 0.2rem;
+    transition: all 0.3s ease;
+}
+
+.action-btn.edit {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.action-btn.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.action-btn:hover {
+    opacity: 0.8;
+} 

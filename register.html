@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fifty - Register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="menu-bar">
+        <div class="logo">fifty</div>
+    </nav>
+    <div class="container">
+        <div class="login-container">
+            <h2>Create Account</h2>
+            <form id="registerForm" class="login-form">
+                <div class="form-group">
+                    <input type="text" id="firstname" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="surname" placeholder="Surname" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" 
+                           id="dob" 
+                           placeholder="Date of Birth (DD/MM/YYYY)" 
+                           pattern="\d{2}/\d{2}/\d{4}"
+                           title="Please enter date in DD/MM/YYYY format (e.g., 25/12/1990)"
+                           required>
+                </div>
+                <div class="form-group select-group">
+                    <select id="sex" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group select-group">
+                    <select id="district" required>
+                        <option value="" disabled selected>Select District</option>
+                        <option value="kampala">Kampala</option>
+                        <option value="wakiso">Wakiso</option>
+                        <option value="mukono">Mukono</option>
+                        <option value="jinja">Jinja</option>
+                        <option value="mbarara">Mbarara</option>
+                        <!-- Add more districts as needed -->
+                    </select>
+                </div>
+                <div class="form-group full-width">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="form-group full-width">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                </div>
+                <div class="form-group full-width">
+                    <button type="submit" class="login-btn">Register</button>
+                </div>
+            </form>
+            <p class="register-text">Already have an account? <a href="index.html">Login</a></p>
+        </div>
+    </div>
+</body>
+<script src="register.js"></script>
+</html> 

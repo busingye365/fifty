@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fifty Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <nav class="menu-bar">
+        <div class="logo">fifty</div>
+        <div class="admin-controls">
+            <button id="logoutBtn" onclick="logoutAdmin()" class="logout-btn">Logout</button>
+        </div>
+    </nav>
+    <div class="container admin-container">
+        <div class="admin-tabs">
+            <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+            <button class="tab-btn" onclick="switchTab('users')">Users</button>
+            <button class="tab-btn" onclick="switchTab('transactions')">Transactions</button>
+            <button class="tab-btn" onclick="switchTab('settings')">Settings</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="admin-sections">
+                <div class="admin-section">
+                    <h2>User Management</h2>
+                    <div class="admin-card">
+                        <h3>Active Users</h3>
+                        <div id="activeUsers" class="data-display">0</div>
+                    </div>
+                    <div class="admin-card">
+                        <h3>Total Users</h3>
+                        <div id="totalUsers" class="data-display">0</div>
+                    </div>
+                </div>
+                
+                <div class="admin-section">
+                    <h2>Financial Overview</h2>
+                    <div class="admin-card">
+                        <h3>Total Stakes Today</h3>
+                        <div id="totalStakes" class="data-display">0 UGX</div>
+                    </div>
+                    <div class="admin-card">
+                        <h3>Net Profit/Loss</h3>
+                        <div id="netProfit" class="data-display">0 UGX</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Tab -->
+        <div id="users" class="tab-content">
+            <div class="admin-section full-width">
+                <div class="section-header">
+                    <h2>User Database</h2>
+                    <div class="search-box">
+                        <input type="text" id="userSearch" placeholder="Search users...">
+                    </div>
+                </div>
+                <div class="admin-table">
+                    <table id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Join Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody"></tbody>
+                    </table>
+                    <div class="pagination">
+                        <button onclick="changePage(-1)">Previous</button>
+                        <span id="currentPage">Page 1</span>
+                        <button onclick="changePage(1)">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transactions Tab -->
+        <div id="transactions" class="tab-content">
+            <div class="admin-section full-width">
+                <div class="section-header">
+                    <h2>Transaction History</h2>
+                    <div class="filters">
+                        <select id="transactionType">
+                            <option value="all">All Transactions</option>
+                            <option value="win">Wins</option>
+                            <option value="loss">Losses</option>
+                        </select>
+                        <input type="date" id="startDate">
+                        <input type="date" id="endDate">
+                        <button onclick="filterTransactions()" class="admin-btn">Filter</button>
+                    </div>
+                </div>
+                <div class="admin-table">
+                    <table id="transactionTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>User</th>
+                                <th>Transaction ID</th>
+                                <th>Stake</th>
+                                <th>Result</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionBody"></tbody>
+                    </table>
+                    <div class="pagination">
+                        <button onclick="changeTransactionPage(-1)">Previous</button>
+                        <span id="currentTransactionPage">Page 1</span>
+                        <button onclick="changeTransactionPage(1)">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="settings" class="tab-content">
+            <div class="admin-section">
+                <h2>System Settings</h2>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label>Minimum Stake (UGX)</label>
+                        <input type="number" id="minStake" value="5000">
+                    </div>
+                    <div class="form-group">
+                        <label>Maximum Stake (UGX)</label>
+                        <input type="number" id="maxStake" value="20000">
+                    </div>
+                    <div class="form-group">
+                        <label>Win Multiplier</label>
+                        <input type="number" id="winMultiplier" value="1.5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label>Session Duration (seconds)</label>
+                        <input type="number" id="sessionDuration" value="30">
+                    </div>
+                    <div class="form-group">
+                        <label>Maximum Daily Loss Limit (UGX)</label>
+                        <input type="number" id="maxDailyLoss" value="100000">
+                    </div>
+                    <button onclick="saveSettings()" class="admin-btn">Save Settings</button>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <h2>Database Management</h2>
+                <div class="db-actions">
+                    <button onclick="exportDatabase()" class="admin-btn">Export Database</button>
+                    <button onclick="backupDatabase()" class="admin-btn">Backup Database</button>
+                    <button onclick="if(confirm('Are you sure you want to clear all logs?')) clearLogs()" class="admin-btn danger">Clear Logs</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="admin-dashboard.js"></script>
+</body>
+</html> 

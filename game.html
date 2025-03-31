@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fifty - Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="menu-bar">
+        <div class="logo">fifty</div>
+        <div class="nav-buttons">
+            <div class="dropdown">
+                <button class="profile-btn" onclick="toggleDropdown(event)">Profile</button>
+                <div class="dropdown-content" id="profileDropdown">
+                    <a href="#" onclick="showUserProfile()">User Profile</a>
+                    <a href="#" onclick="showStakeHistory()">Stake History</a>
+                </div>
+            </div>
+            <button onclick="logout()" class="logout-btn">Logout</button>
+        </div>
+    </nav>
+    <div class="container" style="margin-top: 5rem;">
+        <div class="clock"></div>
+        <div class="game-container">
+            <h2>Choose Your Stake</h2>
+            <div class="stakes-options">
+                <div class="stake-option" data-stake="5000">
+                    <h3>5,000 UGX</h3>
+                    <p>Start Small</p>
+                    <p class="description">Perfect for new players</p>
+                    <p class="possible-win">Win: 7,500 UGX</p>
+                </div>
+                <div class="stake-option" data-stake="10000">
+                    <h3>10,000 UGX</h3>
+                    <p>Go Bold</p>
+                    <p class="description">Double your chances</p>
+                    <p class="possible-win">Win: 15,000 UGX</p>
+                </div>
+                <div class="stake-option" data-stake="20000">
+                    <h3>20,000 UGX</h3>
+                    <p>High Roller</p>
+                    <p class="description">Maximum rewards await</p>
+                    <p class="possible-win">Win: 30,000 UGX</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update modal notification -->
+    <div class="modal" id="notification-modal">
+        <div class="modal-content">
+            <span class="close-x">&times;</span>
+            <h3>Stake Placed!</h3>
+            <div class="stake-details">
+                <p><strong>Stake:</strong> <span id="stake-amount"></span></p>
+                <p><strong>Possible Win:</strong> <span id="possible-win"></span></p>
+            </div>
+            <div class="code-section">
+                <p>Your Code:</p>
+                <div class="code-container" id="code-display"></div>
+                <button id="copy-btn">Copy Code</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile modal -->
+    <div class="modal" id="profile-modal">
+        <div class="modal-content">
+            <span class="close-x" onclick="closeProfile()">&times;</span>
+            <h3>User Profile</h3>
+            <div class="profile-details">
+                <p><strong>Name:</strong> <span id="profile-name"></span></p>
+                <p><strong>Email:</strong> <span id="profile-email"></span></p>
+                <p><strong>Phone:</strong> <span id="profile-phone"></span></p>
+                <p><strong>District:</strong> <span id="profile-district"></span></p>
+                <p><strong>Date of Birth:</strong> <span id="profile-dob"></span></p>
+                <p><strong>Age:</strong> <span id="profile-age"></span></p>
+                <p><strong>Join Date:</strong> <span id="profile-join-date"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stake History Modal -->
+    <div class="modal" id="stake-history-modal">
+        <div class="modal-content">
+            <span class="close-x" onclick="closeStakeHistory()">&times;</span>
+            <h3>Stake History</h3>
+            <div class="history-list" id="stake-history-list">
+                <!-- Stake history will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

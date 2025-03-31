@@ -1,0 +1,1200 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-bg: #e0e0e0;
+    --green-color: #4CAF50;
+    --shadow-light: rgba(255, 255, 255, 0.7);
+    --shadow-dark: rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: "Agency FB", "Arial Narrow", Arial, sans-serif;
+    background-color: var(--main-bg);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    background-color: var(--main-bg);
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 4px 4px 10px var(--shadow-dark),
+                -4px -4px 10px var(--shadow-light);
+    text-align: center;
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 9.5rem;
+    position: relative;
+}
+
+/* Remove these scrollbar styles as they're no longer needed */
+.container::-webkit-scrollbar {
+    display: none;
+}
+
+.container::-webkit-scrollbar-track {
+    display: none;
+}
+
+.container::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+    display: none;
+}
+
+.game-container {
+    width: 100%;
+}
+
+h1, h3, p, button, .stake-option {
+    font-family: "Agency FB", "Arial Narrow", Arial, sans-serif;
+}
+
+h1 {
+    display: none;
+}
+
+h2 {
+    font-family: 'Nunito', sans-serif !important;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.stakes-options {
+    display: grid;
+    gap: 1.5rem;
+    width: 75%;
+    margin: 2rem auto;
+}
+
+/* Responsive grid layout */
+@media (min-width: 768px) {
+    .stakes-options {
+        grid-template-columns: repeat(3, 1fr);
+        width: 75%;
+        margin: 2rem auto;
+    }
+}
+
+/* For tablets and smaller screens */
+@media (max-width: 767px) {
+    .stakes-options {
+        grid-template-columns: repeat(2, 1fr);
+        width: 75%;
+        margin: 2rem auto;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+    .stakes-options {
+        grid-template-columns: 1fr;
+        width: 75%;
+        margin: 2rem auto;
+    }
+    
+    .stake-option {
+        padding: 1.5rem 1rem;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+}
+
+.stake-option {
+    padding: 1.5rem 1rem;
+    background-color: var(--green-color);
+    color: white;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1),
+                -4px -4px 10px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stake-option h3,
+.stake-option p {
+    color: white;
+}
+
+.stake-option:hover {
+    background-color: var(--main-bg);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+    transform: translateY(-2px);
+}
+
+.stake-option:hover p, 
+.stake-option:hover h3 {
+    color: var(--green-color);
+}
+
+.stake-option.selected {
+    background-color: var(--green-color);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+    transform: scale(1.02);
+}
+
+.stake-option.selected p,
+.stake-option.selected h3 {
+    color: white;
+}
+
+.stake-option h3 {
+    font-family: "Agency FB", "Arial Narrow", Arial, sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.stake-option p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+.stake-option .description {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+}
+
+.possible-win {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    margin-top: 1rem;
+    opacity: 0.9;
+    font-weight: normal;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 0.5rem;
+}
+
+/* Remove the game-status styles */
+.game-status {
+    display: none;
+}
+
+/* Remove the play button styles */
+#play-btn,
+#play-btn:hover,
+#play-btn:disabled {
+    display: none;
+}
+
+/* Remove the old stake-btn styles as they're no longer needed */
+.stake-btn,
+.stake-btn:hover,
+.stake-btn.selected {
+    display: none;
+}
+
+/* Add menu bar styles at the top of the file */
+.menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--main-bg);
+    padding: 1rem 2rem;
+    box-shadow: 0 3px 10px var(--shadow-dark);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #4CAF50;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: lowercase;
+    font-family: "Agency FB", "Arial Narrow", Arial, sans-serif;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.balance {
+    font-family: 'Nunito', sans-serif;
+    color: var(--green-color);
+    font-weight: bold;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    float: right;
+}
+
+.logout-btn:hover {
+    color: var(--green-color);
+}
+
+/* Base modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+.modal-content {
+    background-color: var(--main-bg);
+    border-radius: 20px;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.3s ease;
+    animation: modalAppear 0.3s forwards;
+    position: relative;
+    cursor: default;
+}
+
+/* Stake Notification Modal Styles */
+#notification-modal .modal-content {
+    max-width: 350px;
+    width: 95%;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+#notification-modal .stake-details,
+#notification-modal .code-section {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+#notification-modal .stake-details p {
+    text-align: center;
+    margin: 0.8rem 0;
+    font-size: 1.3rem;
+}
+
+#notification-modal #copy-btn {
+    display: block;
+    margin: 1.5rem auto;
+}
+
+/* Profile Modal Styles */
+#profile-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+#profile-modal .modal-content {
+    cursor: default;
+    max-width: 350px;
+    width: 95%;
+    padding: 1.5rem;
+    background-color: var(--main-bg);
+    border-radius: 20px;
+}
+
+#profile-modal h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0;
+}
+
+#profile-modal .profile-details {
+    text-align: left;
+    padding: 1rem;
+    margin-top: 0;
+}
+
+#profile-modal .profile-details p {
+    text-align: left;
+    margin: 0.8rem 0;
+}
+
+#profile-modal .profile-details strong {
+    display: inline-block;
+    width: 120px;
+    color: #666;
+    text-align: left;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+/* Stake History Modal Styles */
+#stake-history-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+#stake-history-modal .modal-content {
+    cursor: default;
+    width: 95%;
+    max-width: 1200px;
+    height: 90vh;
+    margin: 5vh auto;
+    padding: 1.5rem;
+    background-color: var(--main-bg);
+    border-radius: 20px;
+    transform: scale(0.9);
+    opacity: 0;
+    animation: modalAppear 0.3s forwards;
+    display: flex;
+    flex-direction: column;
+}
+
+#stake-history-modal h3 {
+    text-align: left;
+    padding-left: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Nunito', sans-serif;
+    color: #4CAF50;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+#stake-history-modal .history-table {
+    width: 100%;
+    height: calc(90vh - 80px);
+    border-collapse: collapse;
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+#stake-history-modal .history-table thead {
+    position: sticky;
+    top: 0;
+    background-color: var(--main-bg);
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#stake-history-modal .history-table tbody {
+    flex: 1;
+    overflow-y: auto;
+    display: block;
+}
+
+#stake-history-modal .history-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#stake-history-modal .history-table th,
+#stake-history-modal .history-table td {
+    padding: 0.75rem 1.5rem;
+    text-align: left;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+#stake-history-modal .history-table th {
+    font-weight: 600;
+    color: var(--green-color);
+}
+
+#stake-history-modal .history-table td {
+    border-bottom: 1px solid #eee;
+}
+
+/* Update responsive styles */
+@media (max-width: 850px) {
+    #stake-history-modal .modal-content {
+        width: 95%;
+        height: 85vh;
+        margin: 7.5vh auto;
+    }
+    
+    #stake-history-modal .history-table {
+        height: calc(85vh - 80px);
+    }
+}
+
+@media (max-width: 600px) {
+    #stake-history-modal .modal-content {
+        width: 95%;
+        height: 80vh;
+        margin: 10vh auto;
+    }
+    
+    #stake-history-modal .history-table {
+        height: calc(80vh - 80px);
+    }
+}
+
+@keyframes modalAppear {
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal h3 {
+    font-family: 'Nunito', sans-serif;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.stake-details {
+    margin: 1.5rem 0;
+    padding: 1.2rem;
+    background-color: var(--main-bg);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+    border-radius: 15px;
+}
+
+.stake-details p {
+    margin: 0.8rem 0;
+    font-size: 1.3rem;
+    color: #333;
+}
+
+/* Add this to make the labels bold */
+.stake-details p strong,
+.stake-details p {
+    font-weight: bold;
+}
+
+.code-section {
+    margin: 2rem 0;
+}
+
+.code-section p {
+    font-family: 'Nunito', sans-serif;
+    color: var(--green-color);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.code-container {
+    font-family: "Agency FB", "Arial Narrow", Arial, sans-serif;
+    font-size: 1.8rem;
+    padding: 1rem;
+    background-color: var(--main-bg);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+    border-radius: 10px;
+    margin: 1rem 0;
+    word-break: break-all;
+}
+
+#copy-btn {
+    background-color: var(--green-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 1.5rem 0;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1),
+                -4px -4px 10px rgba(255, 255, 255, 0.2);
+}
+
+#copy-btn::before {
+    display: none;
+}
+
+#copy-btn:hover {
+    background-color: var(--main-bg);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+    transform: translateY(0);
+    color: var(--green-color);
+}
+
+/* Remove old close button styles */
+.close-btn {
+    display: none;
+}
+
+/* Add new close X styles */
+.close-x {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-x:hover {
+    color: var(--green-color);
+}
+
+/* Flip Clock Styles */
+.flip-clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.minutes, .seconds {
+    display: flex;
+    gap: 2px;
+}
+
+.nums {
+    box-shadow: 0 3px 10px var(--shadow-dark);
+    border-top: 1px solid var(--shadow-light);
+    display: inline-block;
+    height: 100px;
+    margin: 0 10px;
+    perspective: 1000px;
+    position: relative;
+    width: 70px;
+    background: var(--main-bg);
+}
+
+.nums:before {
+    border-bottom: 2px solid black;
+    content: '';
+    height: 1px;
+    left: 0;
+    position: absolute;
+    transform: translate3d(0,-1px,0);
+    top: 50%;
+    width: 100%;
+    z-index: 1000;
+}
+
+.nums:after {
+    backface-visibility: hidden;
+    background: var(--main-bg);
+    border-bottom: 1px solid var(--shadow-light);
+    border-top: 1px solid var(--shadow-dark);
+    border-radius: 0 0 5px 5px;
+    box-shadow: inset 0 15px 50px var(--shadow-dark);
+    color: var(--green-color);
+    content: '0';
+    display: block;
+    font-size: 72px;
+    height: calc(50% - 1px);
+    left: 0;
+    line-height: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 1px 2px var(--shadow-dark);
+    width: 100%;
+    z-index: 0;
+}
+
+.num {
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+    border-radius: 5px;
+    font-size: 72px;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    transform: rotateX(0);
+    transform-style: preserve-3d;
+    top: 0;
+    width: 100%;
+}
+
+.num:before,
+.num:after {
+    backface-visibility: hidden;
+    color: var(--green-color);
+    display: block;
+    height: 50%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 1px 2px #333;
+    width: 100%;
+}
+
+.num:before {
+    background: var(--main-bg);
+    border-radius: 5px 5px 0 0;
+    box-shadow: inset 0 15px 50px var(--shadow-dark);
+    content: attr(data-num);
+    line-height: 1.38;
+    top: 0;
+    z-index: 1;
+    color: var(--green-color);
+}
+
+.num:after {
+    background: var(--main-bg);
+    border-bottom: 1px solid var(--shadow-light);
+    border-radius: 0 0 5px 5px;
+    box-shadow: inset 0 15px 50px var(--shadow-dark);
+    content: attr(data-num-next);
+    height: calc(50% - 1px);
+    line-height: 0;
+    top: 0;
+    transform: rotateX(180deg);
+    color: var(--green-color);
+}
+
+/* Animation timing for ones digit */
+.nums-one .num:nth-of-type(1) { animation: num-one 10s infinite 0s; z-index: 10; }
+.nums-one .num:nth-of-type(2) { animation: num-one 10s infinite 1s; z-index: 9; }
+.nums-one .num:nth-of-type(3) { animation: num-one 10s infinite 2s; z-index: 8; }
+.nums-one .num:nth-of-type(4) { animation: num-one 10s infinite 3s; z-index: 7; }
+.nums-one .num:nth-of-type(5) { animation: num-one 10s infinite 4s; z-index: 6; }
+.nums-one .num:nth-of-type(6) { animation: num-one 10s infinite 5s; z-index: 5; }
+.nums-one .num:nth-of-type(7) { animation: num-one 10s infinite 6s; z-index: 4; }
+.nums-one .num:nth-of-type(8) { animation: num-one 10s infinite 7s; z-index: 3; }
+.nums-one .num:nth-of-type(9) { animation: num-one 10s infinite 8s; z-index: 2; }
+.nums-one .num:nth-of-type(10) { animation: num-one 10s infinite 9s; z-index: 1; }
+
+/* Animation timing for tens digit */
+.nums-ten .num:nth-of-type(1) { animation: num-ten 100s infinite 9s; z-index: 10; }
+.nums-ten .num:nth-of-type(2) { animation: num-ten 100s infinite 19s; z-index: 9; }
+.nums-ten .num:nth-of-type(3) { animation: num-ten 100s infinite 29s; z-index: 8; }
+.nums-ten .num:nth-of-type(4) { animation: num-ten 100s infinite 39s; z-index: 7; }
+.nums-ten .num:nth-of-type(5) { animation: num-ten 100s infinite 49s; z-index: 6; }
+.nums-ten .num:nth-of-type(6) { animation: num-ten 100s infinite 59s; z-index: 5; }
+.nums-ten .num:nth-of-type(7) { animation: num-ten 100s infinite 69s; z-index: 4; }
+.nums-ten .num:nth-of-type(8) { animation: num-ten 100s infinite 79s; z-index: 3; }
+.nums-ten .num:nth-of-type(9) { animation: num-ten 100s infinite 89s; z-index: 2; }
+.nums-ten .num:nth-of-type(10) { animation: num-ten 100s infinite 99s; z-index: 1; }
+
+@keyframes num-one {
+    0% { transform: rotateX(0); z-index: 50; }
+    10% { transform: rotateX(-180deg); z-index: 50; }
+    90% { transform: rotateX(-180deg); z-index: 1; }
+    90.0001% { transform: rotateX(0); }
+    100% { transform: rotateX(0); }
+}
+
+@keyframes num-ten {
+    0% { transform: rotateX(0); z-index: 50; }
+    1% { transform: rotateX(-180deg); z-index: 50; }
+    90% { transform: rotateX(-180deg); z-index: 1; }
+    90.0001% { transform: rotateX(0); }
+    100% { transform: rotateX(0); }
+}
+
+.divider {
+    font-size: 72px;
+    margin: 0 5px;
+    color: var(--green-color);
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font: 300 70px/1 'Lato', sans-serif;
+    color: #777;
+    background: #eee;
+}
+
+.clock {
+    position: relative;
+    width: 350px;
+    margin: 0 auto 4rem;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock span {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    background: transparent;
+    color: var(--green-color);
+}
+
+/* Style for the colons */
+.clock span:nth-child(3),
+.clock span:nth-child(6) {
+    width: 20px;  /* Smaller width for colons */
+    margin: 0;  /* Removed extra margin */
+    color: var(--green-color);
+}
+
+.clock span:before,
+.clock span:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    backface-visibility: hidden;
+    transition: transform .75s;
+    color: var(--green-color);
+    background: var(--main-bg);
+}
+
+.clock span:before {
+    content: attr(data-old);
+    z-index: 1;
+    transform: translate3d(0,0,0);
+}
+
+.clock .flip:before {
+    transform: translate3d(0,102.5%,0);
+}
+
+.clock span:after {
+    content: attr(data-now);
+    z-index: 2;
+    transform: translate3d(0,-102.5%,0);
+}
+
+.clock .flip:after {
+    transform: translate3d(0,0,0);
+}
+
+.stake-option.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Login styles */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0.5rem;
+}
+
+/* Update the grid layout to only apply to register form */
+#registerForm {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+}
+
+/* Regular login form without grid */
+#loginForm {
+    margin-top: 2rem;
+}
+
+/* Make some fields take full width (only in register form) */
+#registerForm .form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Add responsive behavior (only for register form) */
+@media (max-width: 480px) {
+    #registerForm {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Remove the general .login-form grid styling */
+.login-form {
+    margin-top: 2rem;
+}
+
+.form-group {
+    margin-bottom: 0.8rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group input[type="date"],
+.form-group input[type="number"],
+.select-group select {
+    width: 100%;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--main-bg);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:invalid {
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+}
+
+.form-group input:focus:invalid {
+    box-shadow: inset 4px 4px 8px var(--shadow-dark),
+                inset -4px -4px 8px var(--shadow-light);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--green-color);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: var(--main-bg);
+    color: var(--green-color);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+}
+
+.register-text {
+    margin-top: 1rem;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.register-text a {
+    color: var(--green-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
+}
+
+/* Add to your existing form styles */
+.form-group input[type="email"],
+.form-group input[type="date"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--main-bg);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.select-group select {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--main-bg);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    color: #666;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.form-group input[type="date"] {
+    color: #666;
+}
+
+.form-group input[type="text"]#dob {
+    width: 100%;
+    padding: 0.7rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"]#dob::placeholder {
+    color: #666;
+    opacity: 0.8;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.profile-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.profile-btn:hover,
+.profile-btn:focus {
+    color: var(--green-color);
+    outline: none;
+}
+
+.profile-details {
+    padding: 0.5rem;
+    line-height: 1.6;
+    text-align: center;
+    display: block;
+}
+
+.profile-details p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.profile-details strong {
+    display: inline-block;
+    width: 120px;
+    color: #666;
+    text-align: right;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.stake-history {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.stake-history h4 {
+    font-family: 'Nunito', sans-serif;
+    color: var(--green-color);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.history-list {
+    height: auto;
+    max-height: 95%;
+    padding: 0.5rem;
+    background-color: var(--main-bg);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark),
+                inset -2px -2px 5px var(--shadow-light);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Stake History Table Styles */
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    margin: 0;
+    flex: 1;
+}
+
+.history-table th,
+.history-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.history-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+}
+
+.history-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.history-table td span.win {
+    color: var(--green-color);
+    font-weight: 600;
+}
+
+.history-table td span.loss {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.no-history {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-style: italic;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--main-bg);
+    min-width: 160px;
+    box-shadow: 0 3px 10px var(--shadow-dark);
+    border-radius: 8px;
+    z-index: 1100;
+    margin-top: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-content.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-content a {
+    color: #666;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--green-color);
+    color: white;
+}
+
+/* Remove the media query for profile modal */
+@media (max-width: 850px) {
+    .modal-content {
+        max-width: 95%;
+        margin: 0 1rem;
+    }
+}
+
+/* Adjust table for smaller screens */
+@media (max-width: 600px) {
+    .history-table {
+        font-size: 0.9rem;
+    }
+    
+    .history-table th,
+    .history-table td {
+        padding: 0.5rem;
+    }
+}
+
+/* Update responsive styles for history-list */
+@media (max-width: 850px) {
+    .history-list {
+        height: auto;
+        max-height: 95%;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 600px) {
+    .history-list {
+        height: auto;
+        max-height: 95%;
+        overflow: hidden;
+    }
+}
